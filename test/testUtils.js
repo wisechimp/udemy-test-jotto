@@ -1,4 +1,18 @@
 import checkPropTypes from 'check-prop-types';
+import { createStore } from 'redux';
+
+import rootReducer from '../src/reducers';
+
+/**
+ * Creating a testing store with imported reducers, middleware and initial state.
+ * globals: rootReducer.
+ * @param  {onject} initialState - Initial state for the store.
+ * @function storeFactory
+ * @return {Store} - Redux store.
+ */
+export const storeFactory = (initialState) => {
+  return createStore(rootReducer, initialState);
+}
 
 /**
  * Return node(s) with the given data-test attribute.
