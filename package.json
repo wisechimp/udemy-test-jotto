@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
-    "moxios": "^0.4.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
@@ -15,6 +14,7 @@
   },
   "devDependencies": {
     "ajv": "^6.9.2",
+    "moxios": "^0.4.0",
     "check-prop-types": "^1.1.2",
     "enzyme": "^3.4.0",
     "enzyme-adapter-react-16": "^1.10.0",
