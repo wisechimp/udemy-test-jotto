@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { guessWord } from './actions';
 
 //Class based component because connected to redux.
-class Input extends Component {
+export class Input extends Component {
   render() {
     const contents = this.props.success
       ? null
@@ -19,6 +19,7 @@ class Input extends Component {
           <button
             data-test="submit-button"
             className="btn btn-primary mb-2"
+            onClick={() => this.props.guessWord('train')}
             type="submit">
             Submit
           </button>
