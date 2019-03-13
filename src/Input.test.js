@@ -77,19 +77,35 @@ describe('redux props', () => {
   });
 });
 
-describe('', () => {
-  test('guessWord is called on button click', () => {
-    const guessWordMock = jest.fn();
+describe('guessWord action creator call', () => {
+  let guessWordMock;
+  let wrapper;
+  let submitButton;
+  const guessedWord = 'train';
+  beforeEach(() => {
+    // set up mock for test word
+    guessWordMock = jest.fn();
+    const props = {
+      guessWord: guessWordMock,
+    }
 
     //set up the app component with guessWordMock as the guessWord prop
-    const wrapper = shallow(<Input guessWord={guessWordMock} />);
+    wrapper = shallow(<Input {...props} />);
 
+    //add value to input box
+    wrapper.instance().inputBox.current = {value: guessedWord};
+    submitButton = findByTestAttribute(wrapper, 'submit-button');
     //simulate click
-    const submitButton = findByTestAttribute(wrapper, 'submit-button');
-    submitButton.simulate('click');
-
+    submitButton.simulate('click', { preventDefault() {} });
+  });
+  test('guessWord is called on button click', () => {
     //check to see if the mock ran
     const guessWordCallCount = guessWordMock.mock.calls.length;
     expect(guessWordCallCount).toBe(1);
+  });
+  test('calls guessWord with input value as argument', () => {
+    //console.log(guessWordMock.mock.calls);
+    const guessWordArg = guessWordMock.mock.calls[0][0];
+    expect(guessWordArg).toBe(guessedWord);
   });
 });
